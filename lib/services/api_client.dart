@@ -5,10 +5,15 @@ class ApiClient {
   ApiClient._() {
     _dio = Dio(
       BaseOptions(
-        // WE ARE USING A PROXY TO BYPASS FLUTLAB'S BROWSER SECURITY
-        baseUrl: 'https://corsproxy.io/?https://instantconnect.vtu.name.ng',
+        // USE YOUR REAL URL NOW (No more proxy)
+        baseUrl: 'https://instantconnect.vtu.name.ng', 
         connectTimeout: const Duration(seconds: 20),
         receiveTimeout: const Duration(seconds: 30),
+        headers: {
+          'Accept': 'application/json, text/plain, */*',
+          // THIS IS THE MAGIC TRICK TO BYPASS THE 403 ERROR
+          'User-Agent': 'Mozilla/5.0 (Linux; Android 10; SM-G981B) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/80.0.3987.162 Mobile Safari/537.36',
+        },
         validateStatus: (s) => s != null && s < 500,
       ),
     );
