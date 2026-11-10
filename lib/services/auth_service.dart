@@ -1,4 +1,4 @@
-import 'package:dio/dio.dart';
+ import 'package:dio/dio.dart';
 import 'api_client.dart';
 
 class AuthService {
@@ -13,8 +13,9 @@ class AuthService {
     };
 
     try {
+      // Try the clean URL shown in your browser address bar
       final res = await ApiClient.instance.dio.post(
-        '/mobile/route.php?login', 
+        '/mobile/login', 
         data: data,
         options: Options(
           contentType: Headers.formUrlEncodedContentType,
@@ -38,4 +39,4 @@ class AuthService {
   }
 
   Future<void> logout() => ApiClient.instance.clearToken();
-}
+}   
